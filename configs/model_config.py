@@ -36,6 +36,7 @@ def mobilevit_s_config() -> ml_collections.ConfigDict:
 def get_model_config(model_name: str) -> ml_collections.ConfigDict:
     """
     Get the model configuration for the given model name.
+    Referred from: https://arxiv.org/abs/2110.02178
     Args:
         model_name (str): Name of the model.
     Returns:
