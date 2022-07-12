@@ -29,12 +29,15 @@ def get_training_model(
     input_layer = keras.Input(shape=image_shape)  # Input Layer
 
     # Convolutional Stem Stage
-    x = conv_block(input_layer=input_layer, num_filters=configs.out_channels[0])
+    x = conv_block(
+        input_layer=input_layer, num_filters=configs.out_channels[0], name="conv_stem_"
+    )
 
     x = inverted_residual_block(
         input_layer=x,
         expanded_channels=configs.out_channels[0] * configs.expansion_factor,
         output_channels=configs.out_channels[1],
+        name="inverted_residual_block_1_",
     )
 
     # Downsample with Inverted Residual Block
@@ -43,18 +46,21 @@ def get_training_model(
         expanded_channels=configs.out_channels[1] * configs.expansion_factor,
         output_channels=configs.out_channels[2],
         strides=2,
+        name="inverted_residual_block_2_",
     )
 
     x = inverted_residual_block(
         x,
         expanded_channels=configs.out_channels[2] * configs.expansion_factor,
         output_channels=configs.out_channels[2],
+        name="inverted_residual_block_3_",
     )
 
     x = inverted_residual_block(
         x,
         expanded_channels=configs.out_channels[2] * configs.expansion_factor,
         output_channels=configs.out_channels[3],
+        name="inverted_residual_block_4_",
     )
 
     model = keras.Model(input_layer, x)
