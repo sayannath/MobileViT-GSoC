@@ -7,6 +7,10 @@ import ml_collections
 
 
 def mobilevit_xxs_config() -> ml_collections.ConfigDict:
+    """
+    Referred from https://arxiv.org/abs/2110.02178
+    Section B, Page 14
+    """
     configs = ml_collections.ConfigDict()
     configs.expansion_factor = 2
     configs.num_blocks = [2, 4, 3]
@@ -16,6 +20,10 @@ def mobilevit_xxs_config() -> ml_collections.ConfigDict:
 
 
 def mobilevit_xs_config() -> ml_collections.ConfigDict:
+    """
+    Referred from https://arxiv.org/abs/2110.02178
+    Section B, Page 14
+    """
     configs = ml_collections.ConfigDict()
     configs.expansion_factor = 4
     configs.num_blocks = [2, 4, 3]
@@ -25,6 +33,10 @@ def mobilevit_xs_config() -> ml_collections.ConfigDict:
 
 
 def mobilevit_s_config() -> ml_collections.ConfigDict:
+    """
+    Referred from https://arxiv.org/abs/2110.02178
+    Section B, Page 14
+    """
     configs = ml_collections.ConfigDict()
     configs.expansion_factor = 4
     configs.num_blocks = [2, 4, 3]
