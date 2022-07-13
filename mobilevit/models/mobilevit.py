@@ -33,35 +33,22 @@ def get_training_model(
         input_layer=input_layer, num_filters=configs.out_channels[0], name="conv_stem_"
     )
 
-    x = inverted_residual_block(
-        input_layer=x,
-        expanded_channels=configs.out_channels[0] * configs.expansion_factor,
-        output_channels=configs.out_channels[1],
-        name="inverted_residual_block_1_",
-    )
-
-    # Downsample with Inverted Residual Block
-    x = inverted_residual_block(
-        x,
-        expanded_channels=configs.out_channels[1] * configs.expansion_factor,
-        output_channels=configs.out_channels[2],
-        strides=2,
-        name="inverted_residual_block_2_",
-    )
-
-    x = inverted_residual_block(
-        x,
-        expanded_channels=configs.out_channels[2] * configs.expansion_factor,
-        output_channels=configs.out_channels[2],
-        name="inverted_residual_block_3_",
-    )
-
-    x = inverted_residual_block(
-        x,
-        expanded_channels=configs.out_channels[2] * configs.expansion_factor,
-        output_channels=configs.out_channels[3],
-        name="inverted_residual_block_4_",
-    )
+    for i in range(4):
+        if i == 3:
+            x = inverted_residual_block(
+                x,
+                expanded_channels=configs.out_channels[2] * configs.expansion_factor,
+                output_channels=configs.out_channels[3],
+                name="inverted_residual_block_4_",
+            )
+        else:
+            x = inverted_residual_block(
+                input_layer=x,
+                expanded_channels=configs.out_channels[i] * configs.expansion_factor,
+                output_channels=configs.out_channels[i + 1],
+                strides=2 if i == 1 else 1,
+                name=f"inverted_residual_block_{i+1}_",
+            )
 
     model = keras.Model(input_layer, x)
     return model
