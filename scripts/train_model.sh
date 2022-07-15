@@ -1,1 +1,1 @@
-python3 train.py --experiment_configs configs/classifier.py
+python3 initialize_model_demo.py --experiment_configs configs/classifier.py
