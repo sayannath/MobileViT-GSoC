@@ -6,11 +6,13 @@ from tensorflow.keras import layers
 def conv_block(input_layer, num_filters: int = 16, strides: int = 2, name: str = ""):
     """
     3x3 Convolutional Stem Stage.
+
     Args:
         input_layer: input tensor
         num_filters (int): number of filters in the convolutional layer
         strides (int): stride of the convolutional layer
         name (str): name of the layer
+
     Returns:
         output tensor
     """
