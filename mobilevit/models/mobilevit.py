@@ -2,8 +2,10 @@ from black import out
 import tensorflow as tf
 from configs.model_config import get_model_config
 from tensorflow import keras
+from keras import layers
 
 from mobilevit.models.conv_block import conv_block, inverted_residual_block
+from mobilevit.models.mobilevit_block import mobilevit_block
 
 
 def get_training_model(
@@ -50,5 +52,38 @@ def get_training_model(
                 name=f"inverted_residual_block_{i+1}_",
             )
 
-    model = keras.Model(input_layer, x)
-    return model
+    x = inverted_residual_block(
+        x,
+        expanded_channels=24 * configs.expansion_factor,
+        output_channels=48,
+        strides=2,
+        name="inverted_residual_block_5_",
+    )
+    x = mobilevit_block(x, num_blocks=2, projection_dim=64, patch_size=4)
+
+    # Second MV2 -> MobileViT block.
+    x = inverted_residual_block(
+        x,
+        expanded_channels=64 * configs.expansion_factor,
+        output_channels=64,
+        strides=2,
+        name="inverted_residual_block_6_",
+    )
+    x = mobilevit_block(x, num_blocks=4, projection_dim=80, patch_size=4)
+
+    # Third MV2 -> MobileViT block.
+    x = inverted_residual_block(
+        x,
+        expanded_channels=80 * configs.expansion_factor,
+        output_channels=80,
+        strides=2,
+        name="inverted_residual_block_7_",
+    )
+    x = mobilevit_block(x, num_blocks=3, projection_dim=96, patch_size=4)
+    x = conv_block(x, num_filters=320, kernel_size=1, strides=1, name="mobilevit_1")
+
+    # Classification head.
+    x = layers.GlobalAvgPool2D()(x)
+    output_layer = layers.Dense(num_classes, activation="softmax")(x)
+
+    return keras.Model(input_layer, output_layer)

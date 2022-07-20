@@ -3,7 +3,13 @@ from keras.applications import imagenet_utils
 from tensorflow.keras import layers
 
 
-def conv_block(input_layer, num_filters: int = 16, strides: int = 2, name: str = ""):
+def conv_block(
+    input_layer,
+    num_filters: int = 16,
+    kernel_size=(3, 3),
+    strides: int = 2,
+    name: str = "",
+):
     """
     3x3 Convolutional Stem Stage.
 
@@ -18,7 +24,7 @@ def conv_block(input_layer, num_filters: int = 16, strides: int = 2, name: str =
     """
     conv_1 = layers.Conv2D(
         filters=num_filters,
-        kernel_size=(3, 3),
+        kernel_size=kernel_size,
         strides=strides,
         padding="same",
         name=name + "conv_1",
