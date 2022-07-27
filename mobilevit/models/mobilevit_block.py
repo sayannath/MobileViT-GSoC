@@ -20,14 +20,15 @@ def mobilevit_block(input_layer, num_blocks, projection_dim, patch_size, strides
         output_tensor
     """
     local_features = conv_block(
-        input_layer, num_filters=projection_dim, strides=strides, name="mobile_vit_1_"
+        input_layer,
+        num_filters=projection_dim,
+        strides=strides,
     )
     local_features = conv_block(
         local_features,
         num_filters=projection_dim,
         kernel_size=1,
         strides=strides,
-        name="mobile_vit_2_",
     )
 
     num_patches = int((local_features.shape[1] * local_features.shape[2]) / patch_size)
@@ -47,7 +48,6 @@ def mobilevit_block(input_layer, num_blocks, projection_dim, patch_size, strides
         num_filters=input_layer.shape[-1],
         kernel_size=1,
         strides=strides,
-        name="mobile_vit_3_",
     )
     local_global_features = layers.Concatenate(axis=-1)(
         [input_layer, folded_feature_map]
@@ -57,7 +57,6 @@ def mobilevit_block(input_layer, num_blocks, projection_dim, patch_size, strides
         local_global_features,
         num_filters=projection_dim,
         strides=strides,
-        name="mobile_vit_4_",
     )
 
     return local_global_features

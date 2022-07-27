@@ -8,7 +8,6 @@ def conv_block(
     num_filters: int = 16,
     kernel_size=(3, 3),
     strides: int = 2,
-    name: str = "",
 ):
     """
     3x3 Convolutional Stem Stage.
@@ -27,7 +26,6 @@ def conv_block(
         kernel_size=kernel_size,
         strides=strides,
         padding="same",
-        name=name + "conv_1",
     )(input_layer)
     act_1 = tf.nn.swish(conv_1)
     return act_1

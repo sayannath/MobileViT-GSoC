@@ -31,9 +31,7 @@ def get_training_model(
     input_layer = keras.Input(shape=image_shape)  # Input Layer
 
     # Convolutional Stem Stage
-    x = conv_block(
-        input_layer=input_layer, num_filters=configs.out_channels[0], name="conv_stem_"
-    )
+    x = conv_block(input_layer=input_layer, num_filters=configs.out_channels[0])
 
     for i in range(4):
         if i == 3:
@@ -54,33 +52,39 @@ def get_training_model(
 
     x = inverted_residual_block(
         x,
-        expanded_channels=24 * configs.expansion_factor,
-        output_channels=48,
+        expanded_channels=configs.out_channels[3] * configs.expansion_factor,
+        output_channels=configs.out_channels[4],
         strides=2,
         name="inverted_residual_block_5_",
     )
-    x = mobilevit_block(x, num_blocks=2, projection_dim=64, patch_size=4)
+    x = mobilevit_block(
+        x, num_blocks=configs.num_blocks[0], projection_dim=64, patch_size=4
+    )
 
     # Second MV2 -> MobileViT block.
     x = inverted_residual_block(
         x,
-        expanded_channels=64 * configs.expansion_factor,
-        output_channels=64,
+        expanded_channels=configs.out_channels[6] * configs.expansion_factor,
+        output_channels=configs.out_channels[7],
         strides=2,
         name="inverted_residual_block_6_",
     )
-    x = mobilevit_block(x, num_blocks=4, projection_dim=80, patch_size=4)
+    x = mobilevit_block(
+        x, num_blocks=configs.num_blocks[1], projection_dim=80, patch_size=4
+    )
 
     # Third MV2 -> MobileViT block.
     x = inverted_residual_block(
         x,
-        expanded_channels=80 * configs.expansion_factor,
-        output_channels=80,
+        expanded_channels=configs.out_channels[8] * configs.expansion_factor,
+        output_channels=configs.out_channels[9],
         strides=2,
         name="inverted_residual_block_7_",
     )
-    x = mobilevit_block(x, num_blocks=3, projection_dim=96, patch_size=4)
-    x = conv_block(x, num_filters=320, kernel_size=1, strides=1, name="mobilevit_1")
+    x = mobilevit_block(
+        x, num_blocks=configs.num_blocks[2], projection_dim=96, patch_size=4
+    )
+    x = conv_block(x, num_filters=320, kernel_size=1, strides=1)
 
     # Classification head.
     x = layers.GlobalAvgPool2D()(x)
