@@ -16,7 +16,6 @@ def conv_block(
         input_layer: input tensor
         num_filters (int): number of filters in the convolutional layer
         strides (int): stride of the convolutional layer
-        name (str): name of the layer
 
     Returns:
         output tensor
