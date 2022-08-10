@@ -14,7 +14,7 @@ def mlp(input_layer, hidden_units: int, dropout_rate: int):
         dropout_rate (int): dropout rate.
 
     Returns:
-        output tensor.
+        output tensor of the MLP layer.
     """
     for units in hidden_units:
         x = layers.Dense(units, activation=tf.nn.swish)(
@@ -35,7 +35,7 @@ def transformer_block(x, transformer_layers, projection_dim, num_heads=2):
         num_heads (int): number of heads.
 
     Returns:
-        output tensor.
+        output tensor of the transformer block.
     """
     for _ in range(transformer_layers):
         # Layer normalization 1.

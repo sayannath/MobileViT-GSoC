@@ -20,7 +20,7 @@ def mobilevit_block(
         strides (int): stride of the convolutional layer
 
     Returns:
-        output_tensor
+        output_tensor of the MobileVIT block
     """
     local_features = conv_block(
         input_layer,

@@ -32,7 +32,9 @@ def get_training_model(
     input_layer = keras.Input(shape=image_shape)  # Input Layer
 
     # Convolutional Stem Stage
-    x = conv_block(input_layer=input_layer, num_filters=configs.out_channels[0])
+    x = conv_block(
+        input_layer=input_layer, num_filters=configs.out_channels[0], name="stem_block"
+    )
 
     for i in range(num_inverted_block):
         if i == 3:

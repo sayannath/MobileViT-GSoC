@@ -1,7 +1,9 @@
 from typing import Tuple
+
 import tensorflow as tf
+from keras import backend, layers
 from keras.applications import imagenet_utils
-from tensorflow.keras import layers
+from tensorflow import keras
 
 
 def conv_block(
@@ -9,6 +11,7 @@ def conv_block(
     num_filters: int = 16,
     kernel_size: Tuple[int, int] = (3, 3),
     strides: int = 2,
+    name=None,
 ):
     """
     3x3 Convolutional Stem Stage.
@@ -20,13 +23,18 @@ def conv_block(
         strides (int): stride of the convolutional layer
 
     Returns:
-        output tensor
+        output tensor of the convolutional block
     """
+
+    if name is None:
+        name = str(backend.get_uid("conv_block"))
+
     conv_1 = layers.Conv2D(
         filters=num_filters,
         kernel_size=kernel_size,
         strides=strides,
         padding="same",
+        name=name + "conv_1",
     )(input_layer)
     act_1 = tf.nn.swish(conv_1)
     return act_1
@@ -49,7 +57,7 @@ def inverted_residual_block(
         strides (int): stride of the convolutional layer
         name (str): name of the layer
     Returns:
-        output tensor
+        output tensor of the inverted residual block
     """
     conv_1 = layers.Conv2D(
         filters=expanded_channels,
