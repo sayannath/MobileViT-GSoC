@@ -1,3 +1,4 @@
+from typing import Tuple
 import tensorflow as tf
 from keras.applications import imagenet_utils
 from tensorflow.keras import layers
@@ -6,7 +7,7 @@ from tensorflow.keras import layers
 def conv_block(
     input_layer,
     num_filters: int = 16,
-    kernel_size=(3, 3),
+    kernel_size: Tuple[int, int] = (3, 3),
     strides: int = 2,
 ):
     """
@@ -15,6 +16,7 @@ def conv_block(
     Args:
         input_layer: input tensor
         num_filters (int): number of filters in the convolutional layer
+        kernel_size (Tuple[int, int]): kernel size of the convolution layer
         strides (int): stride of the convolutional layer
 
     Returns:

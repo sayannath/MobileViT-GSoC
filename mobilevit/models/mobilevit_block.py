@@ -5,12 +5,15 @@ from mobilevit.models.conv_block import conv_block
 from mobilevit.models.transformer_block import transformer_block
 
 
-def mobilevit_block(input_layer, num_blocks, projection_dim, patch_size, strides=1):
+def mobilevit_block(
+    input_layer, num_blocks: int, projection_dim: int, patch_size: int, strides: int = 1
+):
     """
     MobileVIT Block.
+    Reference: https://arxiv.org/abs/2110.02178
 
     Args:
-        x: input tensor
+        input_layer: input tensor
         num_blocks (int): number of blocks in the MobileVIT block
         projection_dim (int): number of filters in the expanded convolutional layer
         patch_size (int): size of the patch

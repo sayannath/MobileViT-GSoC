@@ -17,7 +17,9 @@ def mlp(input_layer, hidden_units: int, dropout_rate: int):
         output tensor.
     """
     for units in hidden_units:
-        x = layers.Dense(units, activation=tf.nn.swish)(input_layer)
+        x = layers.Dense(units, activation=tf.nn.swish)(
+            input_layer
+        )  # In MobileViT, we use swish activation function. Generally GeLU is used.
         x = layers.Dropout(dropout_rate)(x)
     return x
 

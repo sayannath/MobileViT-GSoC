@@ -27,13 +27,14 @@ def get_training_model(
         model: Keras Model
     """
     configs = get_model_config(model_name)
+    num_inverted_block = 4
 
     input_layer = keras.Input(shape=image_shape)  # Input Layer
 
     # Convolutional Stem Stage
     x = conv_block(input_layer=input_layer, num_filters=configs.out_channels[0])
 
-    for i in range(4):
+    for i in range(num_inverted_block):
         if i == 3:
             x = inverted_residual_block(
                 x,
