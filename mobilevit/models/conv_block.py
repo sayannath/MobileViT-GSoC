@@ -7,7 +7,7 @@ from tensorflow import keras
 
 
 def conv_block(
-    input_layer,
+    input_layer: layers.Input,
     num_filters: int = 16,
     kernel_size: Tuple[int, int] = (3, 3),
     strides: int = 2,
@@ -21,6 +21,7 @@ def conv_block(
         num_filters (int): number of filters in the convolutional layer
         kernel_size (Tuple[int, int]): kernel size of the convolution layer
         strides (int): stride of the convolutional layer
+        name (str): name of the layer
 
     Returns:
         output tensor of the convolutional block
@@ -41,7 +42,7 @@ def conv_block(
 
 
 def inverted_residual_block(
-    input_layer,
+    input_layer: layers.Input,
     expanded_channels: int,
     output_channels: int,
     strides: int = 1,

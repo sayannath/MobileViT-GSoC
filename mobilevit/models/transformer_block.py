@@ -4,7 +4,7 @@ from tensorflow.keras import layers
 
 # Reference:
 # https://keras.io/examples/vision/image_classification_with_vision_transformer/
-def mlp(input_layer, hidden_units: int, dropout_rate: int):
+def mlp(input_layer: layers.Input, hidden_units: int, dropout_rate: int):
     """
     MLP layer.
 
@@ -24,7 +24,9 @@ def mlp(input_layer, hidden_units: int, dropout_rate: int):
     return x
 
 
-def transformer_block(x, transformer_layers, projection_dim, num_heads=2):
+def transformer_block(
+    x: layers.Input, transformer_layers: int, projection_dim: int, num_heads: int = 2
+):
     """
     Transformer block.
 

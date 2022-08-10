@@ -6,7 +6,11 @@ from mobilevit.models.transformer_block import transformer_block
 
 
 def mobilevit_block(
-    input_layer, num_blocks: int, projection_dim: int, patch_size: int, strides: int = 1
+    input_layer: layers.Input,
+    num_blocks: int,
+    projection_dim: int,
+    patch_size: int,
+    strides: int = 1,
 ):
     """
     MobileVIT Block.
