@@ -1,32 +1,48 @@
+from typing import Tuple
+
 import tensorflow as tf
+from keras import backend, layers
 from keras.applications import imagenet_utils
-from tensorflow.keras import layers
+from tensorflow import keras
 
 
-def conv_block(input_layer, num_filters: int = 16, strides: int = 2, name: str = ""):
+def conv_block(
+    input_layer: layers.Input,
+    num_filters: int = 16,
+    kernel_size: Tuple[int, int] = (3, 3),
+    strides: int = 2,
+    name=None,
+):
     """
     3x3 Convolutional Stem Stage.
+
     Args:
         input_layer: input tensor
         num_filters (int): number of filters in the convolutional layer
+        kernel_size (Tuple[int, int]): kernel size of the convolution layer
         strides (int): stride of the convolutional layer
         name (str): name of the layer
+
     Returns:
-        output tensor
+        output tensor of the convolutional block
     """
+
+    if name is None:
+        name = str(backend.get_uid("conv_block"))
+
     conv_1 = layers.Conv2D(
         filters=num_filters,
-        kernel_size=(3, 3),
+        kernel_size=kernel_size,
         strides=strides,
         padding="same",
+        activation=tf.nn.swish,
         name=name + "conv_1",
     )(input_layer)
-    act_1 = tf.nn.swish(conv_1)
-    return act_1
+    return conv_1
 
 
 def inverted_residual_block(
-    input_layer,
+    input_layer: layers.Input,
     expanded_channels: int,
     output_channels: int,
     strides: int = 1,
@@ -42,18 +58,18 @@ def inverted_residual_block(
         strides (int): stride of the convolutional layer
         name (str): name of the layer
     Returns:
-        output tensor
+        output tensor of the inverted residual block
     """
     conv_1 = layers.Conv2D(
         filters=expanded_channels,
-        kernel_size=(3, 3),
+        kernel_size=(1, 1),
         strides=1,
         padding="same",
         use_bias=False,
-        name=name + "conv_1",
+        # name=name + "conv_1",
     )(input_layer)
     bn_1 = layers.BatchNormalization(
-        name=name + "bn_1",
+        # name=name + "bn_1",
     )(conv_1)
     act_1 = tf.nn.swish(bn_1)
 
@@ -67,10 +83,10 @@ def inverted_residual_block(
         strides=strides,
         padding="same" if strides == 1 else "valid",
         use_bias=False,
-        name=name + "depth_conv_1",
+        # name=name + "depth_conv_1",
     )(act_1)
     bn_2 = layers.BatchNormalization(
-        name=name + "bn_2",
+        # name=name + "bn_2",
     )(depth_conv_1)
     act_2 = tf.nn.swish(bn_2)
 
@@ -79,14 +95,14 @@ def inverted_residual_block(
         kernel_size=(1, 1),
         padding="same",
         use_bias=False,
-        name=name + "conv_2",
+        # name=name + "conv_2",
     )(act_2)
     bn_3 = layers.BatchNormalization(
-        name=name + "bn_3",
+        # name=name + "bn_3",
     )(conv_2)
 
     if tf.math.equal(input_layer.shape[-1], output_channels) and strides == 1:
         return layers.Add(
-            name=name + "add",
+            # name=name + "add",
         )([bn_3, input_layer])
     return bn_3
