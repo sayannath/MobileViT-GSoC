@@ -41,7 +41,6 @@ def get_training_model(
         output_channels=configs.out_channels[1],
         name="inverted_residual_block_1_",
     )
-    print(x.shape)
 
     x = inverted_residual_block(
         x,
@@ -58,7 +57,6 @@ def get_training_model(
             output_channels=configs.out_channels[3],
             name=f"inverted_residual_block_{i+3}_",
         )
-    print(x.shape)
 
     # First MV2 -> MobileViT block
     x = inverted_residual_block(
@@ -74,7 +72,6 @@ def get_training_model(
         projection_dim=configs.projection_dims[0],
         patch_size=4,
     )
-    print(x.shape)
 
     # Second MV2 -> MobileViT block.
     x = inverted_residual_block(
@@ -90,7 +87,6 @@ def get_training_model(
         projection_dim=configs.projection_dims[1],
         patch_size=4,
     )
-    print(x.shape)
 
     # Third MV2 -> MobileViT block.
     x = inverted_residual_block(
@@ -112,7 +108,6 @@ def get_training_model(
         kernel_size=(1, 1),
         strides=1,
     )
-    print(x.shape)
 
     # Classification head.
     x = layers.GlobalAvgPool2D()(x)

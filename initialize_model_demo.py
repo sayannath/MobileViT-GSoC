@@ -22,7 +22,7 @@ def main(_):
         num_classes=FLAGS.experiment_configs.num_classes,
     )
 
-    # model.summary()
+    model.summary()
 
 
 if __name__ == "__main__":
