@@ -34,7 +34,7 @@ def mobilevit_block(
     local_features = conv_block(
         local_features,
         num_filters=projection_dim,
-        kernel_size=1,
+        kernel_size=(1, 1),
         strides=strides,
     )
 
@@ -53,7 +53,7 @@ def mobilevit_block(
     folded_feature_map = conv_block(
         folded_feature_map,
         num_filters=input_layer.shape[-1],
-        kernel_size=1,
+        kernel_size=(1, 1),
         strides=strides,
     )
     local_global_features = layers.Concatenate(axis=-1)(
