@@ -1,8 +1,6 @@
-from black import out
-import tensorflow as tf
 from configs.model_config import get_model_config
-from tensorflow import keras
 from keras import layers
+from tensorflow import keras
 
 from mobilevit.models.conv_block import conv_block, inverted_residual_block
 from mobilevit.models.mobilevit_block import mobilevit_block
@@ -113,4 +111,4 @@ def get_training_model(
     x = layers.GlobalAvgPool2D()(x)
 
     output_layer = layers.Dense(num_classes, activation="softmax")(x)
-    return keras.Model(input_layer, output_layer)
+    return keras.Model(input_layer, output_layer, name=model_name)
