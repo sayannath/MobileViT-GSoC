@@ -6,3 +6,4 @@ tensorflow==2.9.0
 tensorflow-addons==0.17.0
 torch==1.12.1
 torchvision==0.13.1
+transformers==4.21.2

@@ -6,7 +6,7 @@ from mobilevit.models.conv_block import conv_block, inverted_residual_block
 from mobilevit.models.mobilevit_block import mobilevit_block
 
 
-def get_training_model(
+def get_mobilevit_model(
     model_name: str,
     image_shape: tuple,
     num_classes: int,
