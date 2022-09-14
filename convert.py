@@ -109,6 +109,13 @@ def main(args):
         )
         stem_layer.bias.assign(tf.Variable(param_list[1].numpy()))
 
+    # inverted residual blocks
+    for i in range(5):
+        downsampling_block = mobilevit_model_tf.get_layer(
+            f"inverted_residual_block_{i+1}_"
+        )
+        print(downsampling_block)
+
 
 if __name__ == "__main__":
     args = parse_args()
