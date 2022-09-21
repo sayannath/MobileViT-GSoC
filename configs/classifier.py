@@ -3,7 +3,7 @@ import ml_collections
 
 def get_config() -> ml_collections.ConfigDict:
     config = ml_collections.ConfigDict()
-    config.model_name = "mobilevit_xxs"
+    config.model_name = "mobilevit_s"
     config.image_height = 256
     config.image_width = 256
     config.image_channels = 3

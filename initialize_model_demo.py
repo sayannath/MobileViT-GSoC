@@ -24,7 +24,8 @@ def main(_):
         num_classes=FLAGS.experiment_configs.num_classes,
     )
 
-    model.summary()
+    with open("model_summary.txt", "w") as f:
+        f.write(str(model.summary()))
 
     # image = tf.ones((256, 256, 3))
     # image = tf.expand_dims(image, axis=0)

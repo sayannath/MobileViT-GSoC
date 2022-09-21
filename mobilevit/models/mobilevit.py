@@ -1,3 +1,5 @@
+from tkinter import X
+import tensorflow as tf
 from configs.model_config import get_model_config
 from keras import layers
 from tensorflow import keras
@@ -33,6 +35,9 @@ def get_mobilevit_model(
     x = conv_block(
         input_layer=input_layer, num_filters=configs.out_channels[0], name="stem_block_"
     )
+    x = layers.BatchNormalization(name="stem_block_bn_1")(x)
+    x = tf.nn.swish(x)
+
     x = inverted_residual_block(
         x,
         expanded_channels=configs.out_channels[0] * configs.expansion_factor,
