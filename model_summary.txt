@@ -1,3 +1,4 @@
+Model: "mobilevit_s"
 __________________________________________________________________________________________________
  Layer (type)                   Output Shape         Param #     Connected to                     
 ==================================================================================================
@@ -22,20 +23,20 @@ ________________________________________________________________________________
  tf.nn.silu_1 (TFOpLambda)      (None, 128, 128, 64  0           ['inverted_residual_block_1_bn_1[
                                 )                                0][0]']                          
                                                                                                   
- inverted_residual_block_1_dept  (None, 128, 128, 64  576        ['tf.nn.silu_1[0][0]']           
- h_conv_1 (DepthwiseConv2D)     )                                                                 
+ inverted_residual_block_1_conv  (None, 128, 128, 64  576        ['tf.nn.silu_1[0][0]']           
+ _2 (Conv2D)                    )                                                                 
                                                                                                   
- inverted_residual_block_1_bn_2  (None, 128, 128, 64  256        ['inverted_residual_block_1_depth
-  (BatchNormalization)          )                                _conv_1[0][0]']                  
+ inverted_residual_block_1_bn_2  (None, 128, 128, 64  256        ['inverted_residual_block_1_conv_
+  (BatchNormalization)          )                                2[0][0]']                        
                                                                                                   
  tf.nn.silu_2 (TFOpLambda)      (None, 128, 128, 64  0           ['inverted_residual_block_1_bn_2[
                                 )                                0][0]']                          
                                                                                                   
  inverted_residual_block_1_conv  (None, 128, 128, 32  2048       ['tf.nn.silu_2[0][0]']           
- _2 (Conv2D)                    )                                                                 
+ _3 (Conv2D)                    )                                                                 
                                                                                                   
  inverted_residual_block_1_bn_3  (None, 128, 128, 32  128        ['inverted_residual_block_1_conv_
-  (BatchNormalization)          )                                2[0][0]']                        
+  (BatchNormalization)          )                                3[0][0]']                        
                                                                                                   
  inverted_residual_block_2_conv  (None, 128, 128, 12  4096       ['inverted_residual_block_1_bn_3[
  _1 (Conv2D)                    8)                               0][0]']                          
@@ -49,20 +50,20 @@ ________________________________________________________________________________
  inverted_residual_block_2_pad_  (None, 129, 129, 12  0          ['tf.nn.silu_3[0][0]']           
  1 (ZeroPadding2D)              8)                                                                
                                                                                                   
- inverted_residual_block_2_dept  (None, 64, 64, 128)  1152       ['inverted_residual_block_2_pad_1
- h_conv_1 (DepthwiseConv2D)                                      [0][0]']                         
+ inverted_residual_block_2_conv  (None, 64, 64, 128)  1152       ['inverted_residual_block_2_pad_1
+ _2 (Conv2D)                                                     [0][0]']                         
                                                                                                   
- inverted_residual_block_2_bn_2  (None, 64, 64, 128)  512        ['inverted_residual_block_2_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_2_bn_2  (None, 64, 64, 128)  512        ['inverted_residual_block_2_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_4 (TFOpLambda)      (None, 64, 64, 128)  0           ['inverted_residual_block_2_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_2_conv  (None, 64, 64, 64)  8192        ['tf.nn.silu_4[0][0]']           
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_2_bn_3  (None, 64, 64, 64)  256         ['inverted_residual_block_2_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  inverted_residual_block_3_conv  (None, 64, 64, 256)  16384      ['inverted_residual_block_2_bn_3[
  _1 (Conv2D)                                                     0][0]']                          
@@ -73,20 +74,20 @@ ________________________________________________________________________________
  tf.nn.silu_5 (TFOpLambda)      (None, 64, 64, 256)  0           ['inverted_residual_block_3_bn_1[
                                                                  0][0]']                          
                                                                                                   
- inverted_residual_block_3_dept  (None, 64, 64, 256)  2304       ['tf.nn.silu_5[0][0]']           
- h_conv_1 (DepthwiseConv2D)                                                                       
+ inverted_residual_block_3_conv  (None, 64, 64, 256)  2304       ['tf.nn.silu_5[0][0]']           
+ _2 (Conv2D)                                                                                      
                                                                                                   
- inverted_residual_block_3_bn_2  (None, 64, 64, 256)  1024       ['inverted_residual_block_3_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_3_bn_2  (None, 64, 64, 256)  1024       ['inverted_residual_block_3_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_6 (TFOpLambda)      (None, 64, 64, 256)  0           ['inverted_residual_block_3_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_3_conv  (None, 64, 64, 64)  16384       ['tf.nn.silu_6[0][0]']           
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_3_bn_3  (None, 64, 64, 64)  256         ['inverted_residual_block_3_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  inverted_residual_block_3_add   (None, 64, 64, 64)  0           ['inverted_residual_block_3_bn_3[
  (Add)                                                           0][0]',                          
@@ -102,20 +103,20 @@ ________________________________________________________________________________
  tf.nn.silu_7 (TFOpLambda)      (None, 64, 64, 256)  0           ['inverted_residual_block_4_bn_1[
                                                                  0][0]']                          
                                                                                                   
- inverted_residual_block_4_dept  (None, 64, 64, 256)  2304       ['tf.nn.silu_7[0][0]']           
- h_conv_1 (DepthwiseConv2D)                                                                       
+ inverted_residual_block_4_conv  (None, 64, 64, 256)  2304       ['tf.nn.silu_7[0][0]']           
+ _2 (Conv2D)                                                                                      
                                                                                                   
- inverted_residual_block_4_bn_2  (None, 64, 64, 256)  1024       ['inverted_residual_block_4_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_4_bn_2  (None, 64, 64, 256)  1024       ['inverted_residual_block_4_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_8 (TFOpLambda)      (None, 64, 64, 256)  0           ['inverted_residual_block_4_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_4_conv  (None, 64, 64, 64)  16384       ['tf.nn.silu_8[0][0]']           
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_4_bn_3  (None, 64, 64, 64)  256         ['inverted_residual_block_4_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  inverted_residual_block_4_add   (None, 64, 64, 64)  0           ['inverted_residual_block_4_bn_3[
  (Add)                                                           0][0]',                          
@@ -134,20 +135,20 @@ ________________________________________________________________________________
  inverted_residual_block_5_pad_  (None, 65, 65, 256)  0          ['tf.nn.silu_9[0][0]']           
  1 (ZeroPadding2D)                                                                                
                                                                                                   
- inverted_residual_block_5_dept  (None, 32, 32, 256)  2304       ['inverted_residual_block_5_pad_1
- h_conv_1 (DepthwiseConv2D)                                      [0][0]']                         
+ inverted_residual_block_5_conv  (None, 32, 32, 256)  2304       ['inverted_residual_block_5_pad_1
+ _2 (Conv2D)                                                     [0][0]']                         
                                                                                                   
- inverted_residual_block_5_bn_2  (None, 32, 32, 256)  1024       ['inverted_residual_block_5_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_5_bn_2  (None, 32, 32, 256)  1024       ['inverted_residual_block_5_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_10 (TFOpLambda)     (None, 32, 32, 256)  0           ['inverted_residual_block_5_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_5_conv  (None, 32, 32, 96)  24576       ['tf.nn.silu_10[0][0]']          
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_5_bn_3  (None, 32, 32, 96)  384         ['inverted_residual_block_5_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  1conv_1 (Conv2D)               (None, 32, 32, 144)  124560      ['inverted_residual_block_5_bn_3[
                                                                  0][0]']                          
@@ -216,20 +217,20 @@ ________________________________________________________________________________
  inverted_residual_block_6_pad_  (None, 33, 33, 512)  0          ['tf.nn.silu_11[0][0]']          
  1 (ZeroPadding2D)                                                                                
                                                                                                   
- inverted_residual_block_6_dept  (None, 16, 16, 512)  4608       ['inverted_residual_block_6_pad_1
- h_conv_1 (DepthwiseConv2D)                                      [0][0]']                         
+ inverted_residual_block_6_conv  (None, 16, 16, 512)  4608       ['inverted_residual_block_6_pad_1
+ _2 (Conv2D)                                                     [0][0]']                         
                                                                                                   
- inverted_residual_block_6_bn_2  (None, 16, 16, 512)  2048       ['inverted_residual_block_6_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_6_bn_2  (None, 16, 16, 512)  2048       ['inverted_residual_block_6_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_12 (TFOpLambda)     (None, 16, 16, 512)  0           ['inverted_residual_block_6_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_6_conv  (None, 16, 16, 128)  65536      ['tf.nn.silu_12[0][0]']          
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_6_bn_3  (None, 16, 16, 128)  512        ['inverted_residual_block_6_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  5conv_1 (Conv2D)               (None, 16, 16, 192)  221376      ['inverted_residual_block_6_bn_3[
                                                                  0][0]']                          
@@ -336,20 +337,20 @@ ________________________________________________________________________________
  inverted_residual_block_7_pad_  (None, 17, 17, 640)  0          ['tf.nn.silu_13[0][0]']          
  1 (ZeroPadding2D)                                                                                
                                                                                                   
- inverted_residual_block_7_dept  (None, 8, 8, 640)   5760        ['inverted_residual_block_7_pad_1
- h_conv_1 (DepthwiseConv2D)                                      [0][0]']                         
+ inverted_residual_block_7_conv  (None, 8, 8, 640)   5760        ['inverted_residual_block_7_pad_1
+ _2 (Conv2D)                                                     [0][0]']                         
                                                                                                   
- inverted_residual_block_7_bn_2  (None, 8, 8, 640)   2560        ['inverted_residual_block_7_depth
-  (BatchNormalization)                                           _conv_1[0][0]']                  
+ inverted_residual_block_7_bn_2  (None, 8, 8, 640)   2560        ['inverted_residual_block_7_conv_
+  (BatchNormalization)                                           2[0][0]']                        
                                                                                                   
  tf.nn.silu_14 (TFOpLambda)     (None, 8, 8, 640)    0           ['inverted_residual_block_7_bn_2[
                                                                  0][0]']                          
                                                                                                   
  inverted_residual_block_7_conv  (None, 8, 8, 160)   102400      ['tf.nn.silu_14[0][0]']          
- _2 (Conv2D)                                                                                      
+ _3 (Conv2D)                                                                                      
                                                                                                   
  inverted_residual_block_7_bn_3  (None, 8, 8, 160)   640         ['inverted_residual_block_7_conv_
-  (BatchNormalization)                                           2[0][0]']                        
+  (BatchNormalization)                                           3[0][0]']                        
                                                                                                   
  9conv_1 (Conv2D)               (None, 8, 8, 240)    345840      ['inverted_residual_block_7_bn_3[
                                                                  0][0]']                          
