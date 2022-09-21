@@ -12,8 +12,8 @@ def get_mobilevit_pt(model_name: str):
         model: Pytorch model
     """
     model_selected = {
-        "mobilevit_xxs": "https://huggingface.co/apple/mobilevit-xx-small",
-        "mobilevit_xs": "https://huggingface.co/apple/mobilevit-x-small",
+        "mobilevit_xxs": "apple/mobilevit-xx-small",
+        "mobilevit_xs": "apple/mobilevit-x-small",
         "mobilevit_s": "apple/mobilevit-small",
     }
     model = MobileViTModel.from_pretrained(model_selected[model_name])
@@ -21,8 +21,4 @@ def get_mobilevit_pt(model_name: str):
 
 
 # if __name__ == "__main__":
-#     x = get_mobilevit_pt()
-#     model_states = x.state_dict()
-#     state_list = list(model_states.keys())
-#     with open("model_states_keys.txt", "w") as f:
-#         f.write(str(state_list))
+#     x = get_mobilevit_pt("mobilevit_xs")

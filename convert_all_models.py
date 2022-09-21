@@ -10,5 +10,5 @@ imagenet_1k_256 = {
 print("Converting 256x256 resolution ImageNet-1k models.")
 for model in tqdm(imagenet_1k_256):
     print(f"Converting {model}.")
-    command = f"python3 convert.py -m {model} -c {imagenet_1k_256[model]}"
+    command = f"python3 convert.py -m {model} -c {imagenet_1k_256[model]} -m {model}"
     os.system(command)
