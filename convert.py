@@ -102,10 +102,12 @@ def main(args):
     if isinstance(stem_layer_bn, layers.BatchNormalization):
         print("Stem Bn 2")
         stem_layer_bn.gamma.assign(
-            tf.Variable(model_states["conv_stem.normalization.weight"].numpy())
+            tf.Variable(
+                model_states["mobilevit.conv_stem.normalization.weight"].numpy()
+            )
         )
         stem_layer_bn.beta.assign(
-            tf.Variable(model_states["conv_stem.normalization.bias"].numpy())
+            tf.Variable(model_states["mobilevit.conv_stem.normalization.bias"].numpy())
         )
 
     # inverted residual block 1 - (expand_1x1)
@@ -113,7 +115,7 @@ def main(args):
         "inverted_residual_block_1_conv_1"
     )
     inverted_residual_1_conv_1_pt = model_states[
-        "encoder.layer.0.layer.0.expand_1x1.convolution.weight"
+        "mobilevit.encoder.layer.0.layer.0.expand_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_1_conv_1_tf, layers.Conv2D):
         print("inverted_residual_1_conv_1_tf 3")
@@ -129,14 +131,14 @@ def main(args):
         inverted_residual_1_bn_1_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.expand_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.0.layer.0.expand_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_1_bn_1_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.expand_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.0.layer.0.expand_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -146,7 +148,7 @@ def main(args):
         "inverted_residual_block_1_conv_2"
     )
     inverted_residual_1_conv_2_pt = model_states[
-        "encoder.layer.0.layer.0.conv_3x3.convolution.weight"
+        "mobilevit.encoder.layer.0.layer.0.conv_3x3.convolution.weight"
     ]
     if isinstance(inverted_residual_1_conv_2_tf, layers.Conv2D):
         print("inverted_residual_1_conv_2_tf 5")
@@ -162,14 +164,14 @@ def main(args):
         inverted_residual_1_bn_2_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.conv_3x3.normalization.weight"
+                    "mobilevit.encoder.layer.0.layer.0.conv_3x3.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_1_bn_2_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.conv_3x3.normalization.bias"
+                    "mobilevit.encoder.layer.0.layer.0.conv_3x3.normalization.bias"
                 ].numpy()
             )
         )
@@ -179,7 +181,7 @@ def main(args):
         "inverted_residual_block_1_conv_3"
     )
     inverted_residual_1_conv_3_pt = model_states[
-        "encoder.layer.0.layer.0.reduce_1x1.convolution.weight"
+        "mobilevit.encoder.layer.0.layer.0.reduce_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_1_conv_3_tf, layers.Conv2D):
         print("inverted_residual_1_conv_3_tf 7")
@@ -195,14 +197,14 @@ def main(args):
         inverted_residual_1_bn_3_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.reduce_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.0.layer.0.reduce_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_1_bn_3_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.0.layer.0.reduce_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.0.layer.0.reduce_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -212,7 +214,7 @@ def main(args):
         "inverted_residual_block_2_conv_1"
     )
     inverted_residual_2_conv_1_pt = model_states[
-        "encoder.layer.1.layer.0.expand_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.0.expand_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_2_conv_1_tf, layers.Conv2D):
         print("inverted_residual_2_conv_1_tf 9")
@@ -228,14 +230,14 @@ def main(args):
         inverted_residual_2_bn_1_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.expand_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.0.expand_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_2_bn_1_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.expand_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.0.expand_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -245,7 +247,7 @@ def main(args):
         "inverted_residual_block_2_conv_2"
     )
     inverted_residual_2_conv_2_pt = model_states[
-        "encoder.layer.1.layer.0.conv_3x3.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.0.conv_3x3.convolution.weight"
     ]
     if isinstance(inverted_residual_2_conv_2_tf, layers.Conv2D):
         print("inverted_residual_2_conv_2_tf 11")
@@ -261,14 +263,14 @@ def main(args):
         inverted_residual_2_bn_2_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.conv_3x3.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.0.conv_3x3.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_2_bn_2_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.conv_3x3.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.0.conv_3x3.normalization.bias"
                 ].numpy()
             )
         )
@@ -278,7 +280,7 @@ def main(args):
         "inverted_residual_block_2_conv_3"
     )
     inverted_residual_2_conv_3_pt = model_states[
-        "encoder.layer.1.layer.0.reduce_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.0.reduce_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_2_conv_3_tf, layers.Conv2D):
         print("inverted_residual_2_conv_3_tf 13")
@@ -294,14 +296,14 @@ def main(args):
         inverted_residual_2_bn_3_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.reduce_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.0.reduce_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_2_bn_3_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.0.reduce_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.0.reduce_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -311,7 +313,7 @@ def main(args):
         "inverted_residual_block_3_conv_1"
     )
     inverted_residual_3_conv_1_pt = model_states[
-        "encoder.layer.1.layer.1.expand_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.1.expand_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_3_conv_1_tf, layers.Conv2D):
         print("inverted_residual_3_conv_1_tf 15")
@@ -327,14 +329,14 @@ def main(args):
         inverted_residual_3_bn_1_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.expand_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.1.expand_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_3_bn_1_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.expand_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.1.expand_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -344,7 +346,7 @@ def main(args):
         "inverted_residual_block_3_conv_2"
     )
     inverted_residual_3_conv_2_pt = model_states[
-        "encoder.layer.1.layer.1.conv_3x3.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.1.conv_3x3.convolution.weight"
     ]
     if isinstance(inverted_residual_3_conv_2_tf, layers.Conv2D):
         print("inverted_residual_3_conv_2_tf 17")
@@ -360,14 +362,14 @@ def main(args):
         inverted_residual_3_bn_2_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.conv_3x3.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.1.conv_3x3.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_3_bn_2_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.conv_3x3.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.1.conv_3x3.normalization.bias"
                 ].numpy()
             )
         )
@@ -377,7 +379,7 @@ def main(args):
         "inverted_residual_block_3_conv_3"
     )
     inverted_residual_3_conv_3_pt = model_states[
-        "encoder.layer.1.layer.1.reduce_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.1.reduce_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_3_conv_3_tf, layers.Conv2D):
         print("inverted_residual_3_conv_3_tf 19")
@@ -393,14 +395,14 @@ def main(args):
         inverted_residual_3_bn_3_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.reduce_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.1.reduce_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_3_bn_3_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.1.reduce_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.1.reduce_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -410,7 +412,7 @@ def main(args):
         "inverted_residual_block_4_conv_1"
     )
     inverted_residual_4_conv_1_pt = model_states[
-        "encoder.layer.1.layer.2.expand_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.2.expand_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_4_conv_1_tf, layers.Conv2D):
         print("inverted_residual_4_conv_1_tf 21")
@@ -426,14 +428,14 @@ def main(args):
         inverted_residual_4_bn_1_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.expand_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.2.expand_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_4_bn_1_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.expand_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.2.expand_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -443,7 +445,7 @@ def main(args):
         "inverted_residual_block_4_conv_2"
     )
     inverted_residual_4_conv_2_pt = model_states[
-        "encoder.layer.1.layer.2.conv_3x3.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.2.conv_3x3.convolution.weight"
     ]
     if isinstance(inverted_residual_4_conv_2_tf, layers.Conv2D):
         print("inverted_residual_4_conv_2_tf 23")
@@ -459,14 +461,14 @@ def main(args):
         inverted_residual_4_bn_2_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.conv_3x3.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.2.conv_3x3.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_4_bn_2_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.conv_3x3.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.2.conv_3x3.normalization.bias"
                 ].numpy()
             )
         )
@@ -476,7 +478,7 @@ def main(args):
         "inverted_residual_block_4_conv_3"
     )
     inverted_residual_4_conv_3_pt = model_states[
-        "encoder.layer.1.layer.2.reduce_1x1.convolution.weight"
+        "mobilevit.encoder.layer.1.layer.2.reduce_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_4_conv_3_tf, layers.Conv2D):
         print("inverted_residual_4_conv_3_tf 25")
@@ -492,14 +494,14 @@ def main(args):
         inverted_residual_4_bn_3_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.reduce_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.1.layer.2.reduce_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_4_bn_3_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.1.layer.2.reduce_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.1.layer.2.reduce_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -509,7 +511,7 @@ def main(args):
         "inverted_residual_block_5_conv_1"
     )
     inverted_residual_5_conv_1_pt = model_states[
-        "encoder.layer.2.downsampling_layer.expand_1x1.convolution.weight"
+        "mobilevit.encoder.layer.2.downsampling_layer.expand_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_5_conv_1_tf, layers.Conv2D):
         print("inverted_residual_5_conv_1_tf 27")
@@ -525,14 +527,14 @@ def main(args):
         inverted_residual_5_bn_1_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.expand_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.2.downsampling_layer.expand_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_5_bn_1_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.expand_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.2.downsampling_layer.expand_1x1.normalization.bias"
                 ].numpy()
             )
         )
@@ -542,7 +544,7 @@ def main(args):
         "inverted_residual_block_5_conv_2"
     )
     inverted_residual_5_conv_2_pt = model_states[
-        "encoder.layer.2.downsampling_layer.conv_3x3.convolution.weight"
+        "mobilevit.encoder.layer.2.downsampling_layer.conv_3x3.convolution.weight"
     ]
     if isinstance(inverted_residual_5_conv_2_tf, layers.Conv2D):
         print("inverted_residual_5_conv_2_tf 29")
@@ -558,14 +560,14 @@ def main(args):
         inverted_residual_5_bn_2_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.conv_3x3.normalization.weight"
+                    "mobilevit.encoder.layer.2.downsampling_layer.conv_3x3.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_5_bn_2_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.conv_3x3.normalization.bias"
+                    "mobilevit.encoder.layer.2.downsampling_layer.conv_3x3.normalization.bias"
                 ].numpy()
             )
         )
@@ -575,7 +577,7 @@ def main(args):
         "inverted_residual_block_5_conv_3"
     )
     inverted_residual_5_conv_3_pt = model_states[
-        "encoder.layer.2.downsampling_layer.reduce_1x1.convolution.weight"
+        "mobilevit.encoder.layer.2.downsampling_layer.reduce_1x1.convolution.weight"
     ]
     if isinstance(inverted_residual_5_conv_3_tf, layers.Conv2D):
         print("inverted_residual_5_conv_3_tf 31")
@@ -591,23 +593,73 @@ def main(args):
         inverted_residual_5_bn_3_tf.gamma.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.reduce_1x1.normalization.weight"
+                    "mobilevit.encoder.layer.2.downsampling_layer.reduce_1x1.normalization.weight"
                 ].numpy()
             )
         )
         inverted_residual_5_bn_3_tf.beta.assign(
             tf.Variable(
                 model_states[
-                    "encoder.layer.2.downsampling_layer.reduce_1x1.normalization.bias"
+                    "mobilevit.encoder.layer.2.downsampling_layer.reduce_1x1.normalization.bias"
                 ].numpy()
             )
         )
 
+    mobilevit_1_conv_1_tf = mobilevit_model_tf.get_layer("1conv_1")
+    mobilevit_1_conv_1_pt = model_states[
+        "mobilevit.encoder.layer.2.conv_kxk.convolution.weight"
+    ]
+    if isinstance(mobilevit_1_conv_1_tf, layers.Conv2D):
+        print("mobilevit_1_conv_1_tf 33")
+        mobilevit_1_conv_1_tf.kernel.assign(
+            tf.Variable(mobilevit_1_conv_1_pt.numpy().transpose(2, 3, 1, 0))
+        )
+
+    mobilevit_1_bn_1_tf = mobilevit_model_tf.get_layer("batch_normalization")
+    if isinstance(mobilevit_1_bn_1_tf, layers.BatchNormalization):
+        print("mobilevit_1_bn_1_tf 34")
+        mobilevit_1_bn_1_tf.gamma.assign(
+            tf.Variable(
+                model_states[
+                    "mobilevit.encoder.layer.2.conv_kxk.normalization.weight"
+                ].numpy()
+            )
+        )
+        mobilevit_1_bn_1_tf.beta.assign(
+            tf.Variable(
+                model_states[
+                    "mobilevit.encoder.layer.2.conv_kxk.normalization.bias"
+                ].numpy()
+            )
+        )
+
+    mobilevit_1_conv_2_tf = mobilevit_model_tf.get_layer("2conv_1")
+    mobilevit_2_conv_1_pt = model_states[
+        "mobilevit.encoder.layer.2.conv_1x1.convolution.weight"
+    ]
+    if isinstance(mobilevit_1_conv_2_tf, layers.Conv2D):
+        print("mobilevit_1_conv_1_tf 35")
+        mobilevit_1_conv_2_tf.kernel.assign(
+            tf.Variable(mobilevit_2_conv_1_pt.numpy().transpose(2, 3, 1, 0))
+        )
+
+    inverted_residual_6_conv_1_tf = mobilevit_model_tf.get_layer(
+        "inverted_residual_block_6_conv_1"
+    )
+    inverted_residual_6_conv_1_pt = model_states[
+        "mobilevit.encoder.layer.3.downsampling_layer.expand_1x1.convolution.weight"
+    ]
+    if isinstance(inverted_residual_6_conv_1_tf, layers.Conv2D):
+        print("inverted_residual_6_conv_1_tf 36")
+        inverted_residual_6_conv_1_tf.kernel.assign(
+            tf.Variable(inverted_residual_6_conv_1_pt.numpy().transpose(2, 3, 1, 0))
+        )
+
     print("Weight population successful, serializing TensorFlow model...")
-    model_name = f'{args["model_name"]}_{args["image_resolution"]}'
-    save_path = os.path.join(TF_MODEL_ROOT, model_name)
-    mobilevit_model_tf.save(save_path)
-    print(f"TensorFlow model serialized to: {save_path}...")
+    # model_name = f'{args["model_name"]}_{args["image_resolution"]}'
+    # save_path = os.path.join(TF_MODEL_ROOT, model_name)
+    # mobilevit_model_tf.save(save_path)
+    # print(f"TensorFlow model serialized to: {save_path}...")
 
 
 if __name__ == "__main__":

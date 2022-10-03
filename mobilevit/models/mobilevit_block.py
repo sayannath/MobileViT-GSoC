@@ -7,6 +7,7 @@ from mobilevit.models.transformer_block import transformer_block
 
 def mobilevit_block(
     input_layer: layers.Input,
+    out_channels: int,
     num_blocks: int,
     projection_dim: int,
     patch_size: int,
@@ -28,9 +29,12 @@ def mobilevit_block(
     """
     local_features = conv_block(
         input_layer,
-        num_filters=projection_dim,
+        num_filters=out_channels,
         strides=strides,
     )
+    local_features = layers.BatchNormalization()(local_features)
+    local_features = tf.nn.silu(local_features)
+
     local_features = conv_block(
         local_features,
         num_filters=projection_dim,

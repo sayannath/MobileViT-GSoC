@@ -1,4 +1,4 @@
-from transformers import MobileViTModel
+from transformers import MobileViTForImageClassification
 
 
 def get_mobilevit_pt(model_name: str):
@@ -16,9 +16,10 @@ def get_mobilevit_pt(model_name: str):
         "mobilevit_xs": "apple/mobilevit-x-small",
         "mobilevit_s": "apple/mobilevit-small",
     }
-    model = MobileViTModel.from_pretrained(model_selected[model_name])
+    model = MobileViTForImageClassification.from_pretrained(model_selected[model_name])
     return model
 
 
 # if __name__ == "__main__":
-#     x = get_mobilevit_pt("mobilevit_xs")
+#     x = get_mobilevit_pt("mobilevit_s")
+#     print(x.state_dict().keys())
