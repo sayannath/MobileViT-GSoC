@@ -1,0 +1,9 @@
+black==22.3.0
+matplotlib==3.5.2
+ml-collections==0.1.0
+pytest==6.2.5
+tensorflow==2.9.0
+tensorflow-addons==0.17.0
+torch==1.12.1
+torchvision==0.13.1
+transformers==4.21.2
