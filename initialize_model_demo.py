@@ -1,10 +1,9 @@
 import os
 from datetime import datetime
 
+import tensorflow as tf
 from absl import app, flags, logging
 from ml_collections.config_flags import config_flags
-
-import tensorflow as tf
 
 from mobilevit.models.mobilevit import get_mobilevit_model
 
@@ -25,12 +24,6 @@ def main(_):
     )
 
     model.summary()
-
-    # image = tf.ones((256, 256, 3))
-    # image = tf.expand_dims(image, axis=0)
-    # logging(image.shape)
-    # output = model(image)
-    # logging(output)
 
 
 if __name__ == "__main__":

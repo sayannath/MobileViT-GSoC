@@ -1,5 +1,6 @@
-from tqdm import tqdm
 import os
+
+from tqdm import tqdm
 
 imagenet_1k_256 = {
     "mobilevit_xxs": "https://docs-assets.developer.apple.com/ml-research/models/cvnets/classification/mobilevit_xxs.pt",

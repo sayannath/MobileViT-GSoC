@@ -71,7 +71,6 @@ def get_mobilevit_model(
     )
     x = mobilevit_block(
         input_layer=x,
-        out_channels=configs.out_channels[4],
         num_blocks=configs.num_blocks[0],
         projection_dim=configs.projection_dims[0],
         patch_size=4,
@@ -87,7 +86,6 @@ def get_mobilevit_model(
     )
     x = mobilevit_block(
         input_layer=x,
-        out_channels=configs.out_channels[7],
         num_blocks=configs.num_blocks[1],
         projection_dim=configs.projection_dims[1],
         patch_size=4,
@@ -103,7 +101,6 @@ def get_mobilevit_model(
     )
     x = mobilevit_block(
         input_layer=x,
-        out_channels=configs.out_channels[9],
         num_blocks=configs.num_blocks[2],
         projection_dim=configs.projection_dims[2],
         patch_size=4,

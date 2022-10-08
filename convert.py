@@ -655,11 +655,19 @@ def main(args):
             tf.Variable(inverted_residual_6_conv_1_pt.numpy().transpose(2, 3, 1, 0))
         )
 
+    # Classifier Head
+    mobilevit_model_tf.layers[-1].kernel.assign(
+        tf.Variable(model_states[state_list[-2]].numpy().transpose())
+    )
+    mobilevit_model_tf.layers[-1].bias.assign(
+        tf.Variable(model_states[state_list[-1]].numpy())
+    )
+
     print("Weight population successful, serializing TensorFlow model...")
-    # model_name = f'{args["model_name"]}_{args["image_resolution"]}'
-    # save_path = os.path.join(TF_MODEL_ROOT, model_name)
-    # mobilevit_model_tf.save(save_path)
-    # print(f"TensorFlow model serialized to: {save_path}...")
+    model_name = f'{args["model_name"]}_{args["image_resolution"]}'
+    save_path = os.path.join(TF_MODEL_ROOT, model_name)
+    mobilevit_model_tf.save(save_path)
+    print(f"TensorFlow model serialized to: {save_path}...")
 
 
 if __name__ == "__main__":
