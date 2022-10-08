@@ -66,10 +66,10 @@ def inverted_residual_block(
         strides=1,
         padding="same",
         use_bias=False,
-        # name=name + "conv_1",
+        name=name + "conv_1",
     )(input_layer)
     bn_1 = layers.BatchNormalization(
-        # name=name + "bn_1",
+        name=name + "bn_1",
     )(conv_1)
     act_1 = tf.nn.swish(bn_1)
 
@@ -78,31 +78,33 @@ def inverted_residual_block(
             padding=imagenet_utils.correct_pad(act_1, 3), name=name + "pad_1"
         )(act_1)
 
-    depth_conv_1 = layers.DepthwiseConv2D(
+    conv_2 = layers.Conv2D(
+        filters=expanded_channels,
         kernel_size=(3, 3),
         strides=strides,
         padding="same" if strides == 1 else "valid",
+        groups=expanded_channels,
         use_bias=False,
-        # name=name + "depth_conv_1",
+        name=name + "conv_2",
     )(act_1)
     bn_2 = layers.BatchNormalization(
-        # name=name + "bn_2",
-    )(depth_conv_1)
+        name=name + "bn_2",
+    )(conv_2)
     act_2 = tf.nn.swish(bn_2)
 
-    conv_2 = layers.Conv2D(
+    conv_3 = layers.Conv2D(
         filters=output_channels,
         kernel_size=(1, 1),
         padding="same",
         use_bias=False,
-        # name=name + "conv_2",
+        name=name + "conv_3",
     )(act_2)
     bn_3 = layers.BatchNormalization(
-        # name=name + "bn_3",
-    )(conv_2)
+        name=name + "bn_3",
+    )(conv_3)
 
     if tf.math.equal(input_layer.shape[-1], output_channels) and strides == 1:
         return layers.Add(
-            # name=name + "add",
+            name=name + "add",
         )([bn_3, input_layer])
     return bn_3

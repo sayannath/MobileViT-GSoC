@@ -1,3 +1,5 @@
+from tkinter import X
+import tensorflow as tf
 from configs.model_config import get_model_config
 from keras import layers
 from tensorflow import keras
@@ -6,7 +8,7 @@ from mobilevit.models.conv_block import conv_block, inverted_residual_block
 from mobilevit.models.mobilevit_block import mobilevit_block
 
 
-def get_training_model(
+def get_mobilevit_model(
     model_name: str,
     image_shape: tuple,
     num_classes: int,
@@ -33,6 +35,9 @@ def get_training_model(
     x = conv_block(
         input_layer=input_layer, num_filters=configs.out_channels[0], name="stem_block_"
     )
+    x = layers.BatchNormalization(name="stem_block_bn_1")(x)
+    x = tf.nn.swish(x)
+
     x = inverted_residual_block(
         x,
         expanded_channels=configs.out_channels[0] * configs.expansion_factor,
@@ -110,5 +115,7 @@ def get_training_model(
     # Classification head.
     x = layers.GlobalAvgPool2D()(x)
 
-    output_layer = layers.Dense(num_classes, activation="softmax")(x)
+    output_layer = layers.Dense(
+        num_classes, activation="softmax", name="classification_head"
+    )(x)
     return keras.Model(input_layer, output_layer, name=model_name)

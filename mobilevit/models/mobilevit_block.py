@@ -31,6 +31,9 @@ def mobilevit_block(
         num_filters=projection_dim,
         strides=strides,
     )
+    local_features = layers.BatchNormalization()(local_features)
+    local_features = tf.nn.silu(local_features)
+
     local_features = conv_block(
         local_features,
         num_filters=projection_dim,
