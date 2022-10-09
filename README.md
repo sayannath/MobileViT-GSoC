@@ -55,7 +55,7 @@ Differences in the results are primarily because of the differences in the libra
 ## Using the models
 
 ### Pre-trained models:
-  * Off-the-shelf classification: [Colab Notebook]() 
+  * Off-the-shelf classification: [Colab Notebook](https://colab.research.google.com/github/sayannath/MobileViT-GSoC/blob/main/notebooks/classification.ipynb) 
   * Fine-tuning: [Colab Notebook]()
 
 ### Randomly initialized models:
