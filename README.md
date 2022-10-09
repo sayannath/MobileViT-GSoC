@@ -49,7 +49,7 @@ Results are on ImageNet-1k validation set (top-1 accuracy).
 |  MobileViT_XS |      74.7      |    74.67    |
 |  MobileViT_S  |      78.3      |    78.36    |
 
-Differences in the results are primarily because of the differences in the library implementations especially how image resizing is implemented in PyTorch and TensorFlow. Results can be verified with the code in `imagenet_1k_eval`. Logs are available at [this URL]().
+Differences in the results are primarily because of the differences in the library implementations especially how image resizing is implemented in PyTorch and TensorFlow. Results can be verified with the code in `imagenet_1k_eval`. Logs are available at [this URL](https://tensorboard.dev/experiment/uyWNZmrwQwW0c87qTjiMOw/#scalars).
 
 
 ## Using the models
