@@ -74,6 +74,14 @@ print(model.summary())
 
 To view different model configurations, refer [here](https://github.com/sayannath/MobileViT-GSoC/blob/main/configs/model_config.py).
 
+## Upcoming Contributions
+
+- [ ] Allow the models to accept more input shapes (useful for downstream tasks)
+- [ ] Convert the `saved_models` to `TFLite`. 
+- [ ] Fine-tuning notebook 
+- [ ] Off-the-shelf-classification notebook
+- [ ] Publish models on TF-Hub
+
 ## References
 
 [1] MobileViT Paper: [https://arxiv.org/abs/2110.02178](https://arxiv.org/abs/2110.02178)
