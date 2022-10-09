@@ -1,0 +1,2 @@
+This directory provides the notebooks where the `classification` and `fine-tuned` notebook is preprared for tutorial purpose. 
+You can go through the notebooks and can easily use `NobileViT` model in your project as per requirements. 
