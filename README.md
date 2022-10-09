@@ -45,9 +45,9 @@ Results are on ImageNet-1k validation set (top-1 accuracy).
 
 |      name     | original acc@1 | keras acc@1 |
 |:-------------:|:--------------:|:-----------:|
-| MobileViT_XXS |      69.0      |    68.58    |
+| MobileViT_XXS |      69.0      |    68.59    |
 |  MobileViT_XS |      74.7      |    74.67    |
-|  MobileViT_S  |      78.3      |    78.38    |
+|  MobileViT_S  |      78.3      |    78.36    |
 
 Differences in the results are primarily because of the differences in the library implementations especially how image resizing is implemented in PyTorch and TensorFlow. Results can be verified with the code in `imagenet_1k_eval`. Logs are available at [this URL]().
 
