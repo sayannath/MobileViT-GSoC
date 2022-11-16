@@ -79,8 +79,8 @@ To view different model configurations, refer [here](https://github.com/sayannat
 - [ ] Allow the models to accept more input shapes (useful for downstream tasks)
 - [ ] Convert the `saved_models` to `TFLite`. 
 - [ ] Fine-tuning notebook 
-- [ ] Off-the-shelf-classification notebook
-- [ ] Publish models on TF-Hub
+- [x] Off-the-shelf-classification notebook
+- [x] Publish models on TF-Hub
 
 ## References
 
